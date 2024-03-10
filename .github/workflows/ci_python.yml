@@ -30,6 +30,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout workflows repository
+        uses: actions/checkout@v4
+        with:
+          repository: game-ai-platform-team/workflows
+
       - name: Set up Poetry
         uses: ./.github/workflows/setup-poetry
 
@@ -53,6 +58,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout workflows repository
+        uses: actions/checkout@v4
+        with:
+          repository: game-ai-platform-team/workflows
+
       - name: Set up Poetry
         uses: ./.github/workflows/setup-poetry
 
@@ -70,6 +80,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Checkout workflows repository
+        uses: actions/checkout@v4
+        with:
+          repository: game-ai-platform-team/workflows
 
       - name: Set up Poetry
         uses: ./.github/workflows/setup-poetry
