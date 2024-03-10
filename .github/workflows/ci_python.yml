@@ -3,10 +3,6 @@ on:
     secrets:
       CODECOV_TOKEN:
         required: true
-      OIDC_CLIENT_ID:
-        required: true
-      OIDC_CLIENT_SECRET:
-        required: true
     inputs:
       environment:
         type: string
