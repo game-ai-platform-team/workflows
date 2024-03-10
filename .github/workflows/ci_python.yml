@@ -10,7 +10,7 @@ on:
         required: true
 defaults:
   run:
-    working-directory: ./backend
+    working-directory: .
 
 jobs:
   Unit_test:
@@ -34,9 +34,8 @@ jobs:
         uses: codecov/codecov-action@v4
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-          slug: game-ai-platform-team/tira-ai-platform
         with:
-          file: ./backend/coverage.xml
+          file: ./coverage.xml
 
   Lint:
     runs-on: ubuntu-latest

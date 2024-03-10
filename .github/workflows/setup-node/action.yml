@@ -4,7 +4,7 @@ inputs:
   cwd:
     description: Working directory
     required: false
-    default: "./frontend"
+    default: .
 
 runs:
   using: "composite"

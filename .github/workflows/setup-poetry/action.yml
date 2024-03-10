@@ -6,7 +6,7 @@ inputs:
   cwd:
     description: Working directory
     required: false
-    default: "./backend"
+    default: .
 
 runs:
   using: "composite"
