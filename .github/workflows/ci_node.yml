@@ -1,5 +1,3 @@
-name: CI (Node)
-
 on:
   workflow_call:
     secrets:
