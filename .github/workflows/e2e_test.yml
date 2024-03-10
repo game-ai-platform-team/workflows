@@ -14,6 +14,9 @@ on:
       working-directory:
         type: string
         default: .
+      backend-directory:
+        type: string
+        default: .
 
 jobs:
   e2e:
@@ -31,7 +34,7 @@ jobs:
       - name: Set up Poetry
         uses: game-ai-platform-team/setup-poetry@main
         with:
-          working-directory: ${{ inputs.working-directory }}
+          working-directory: ${{ inputs.backend-directory }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v3
