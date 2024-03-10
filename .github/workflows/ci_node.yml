@@ -29,7 +29,6 @@ jobs:
         uses: codecov/codecov-action@v4
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-          slug: game-ai-platform-team/tira-ai-platform
         with:
           files: ./coverage/coverage-final.json
 
