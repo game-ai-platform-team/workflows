@@ -7,12 +7,19 @@ on:
         required: true
       OIDC_CLIENT_SECRET:
         required: true
+    inputs:
+      environment:
+        type: string
+        required: true
+      working-directory:
+        type: string
+        default: .
 
 jobs:
   e2e:
     name: End-to-end test
     runs-on: ubuntu-latest
-    environment: staging
+    environment: ${{ inputs.environment }}
     env:
       NODE_ENV: development
       OIDC_CLIENT_ID: ${{ secrets.OIDC_CLIENT_ID }}
@@ -33,7 +40,7 @@ jobs:
       - name: Run Cypress
         uses: cypress-io/github-action@v6
         with:
-          working-directory: ./frontend
+          working-directory: ${{ inputs.working-directory }}
           wait-on: "http://localhost:5000"
           wait-on-timeout: 10
           build: pnpm run build
