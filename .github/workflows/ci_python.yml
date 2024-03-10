@@ -32,6 +32,8 @@ jobs:
 
       - name: Set up Poetry
         uses: game-ai-platform-team/setup-poetry@main
+        with:
+          working-directory: ${{ inputs.working-directory }}
 
       - name: Run unit tests
         run: poetry run invoke coverage-xml
@@ -55,6 +57,8 @@ jobs:
 
       - name: Set up Poetry
         uses: game-ai-platform-team/setup-poetry@main
+        with:
+          working-directory: ${{ inputs.working-directory }}
 
       - name: Run pylint
         run: poetry run invoke lint
@@ -73,6 +77,8 @@ jobs:
 
       - name: Set up Poetry
         uses: game-ai-platform-team/setup-poetry@main
+        with:
+          working-directory: ${{ inputs.working-directory }}
 
       - name: Format code
         run: poetry run invoke format

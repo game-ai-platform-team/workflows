@@ -21,6 +21,8 @@ jobs:
 
       - name: Set up Node
         uses: game-ai-platform-team/setup-node@main
+        with:
+          working-directory: ${{ inputs.working-directory }}
 
       - name: Run unit tests
         run: pnpm run coverage
@@ -46,6 +48,8 @@ jobs:
 
       - name: Set up Node
         uses: game-ai-platform-team/setup-node@main
+        with:
+          working-directory: ${{ inputs.working-directory }}
 
       - name: Format code
         run: pnpm run format
@@ -73,6 +77,8 @@ jobs:
 
       - name: Set up Node
         uses: game-ai-platform-team/setup-node@main
+        with:
+          working-directory: ${{ inputs.working-directory }}
 
       - name: Run lint
         run: pnpm run lint
