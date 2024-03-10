@@ -19,11 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Checkout workflows repository
-        uses: actions/checkout@v4
-        with:
-          repository: game-ai-platform-team/workflows
-
       - name: Set up Node
         uses: ./.github/workflows/setup-node
 
@@ -48,11 +43,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Checkout workflows repository
-        uses: actions/checkout@v4
-        with:
-          repository: game-ai-platform-team/workflows
 
       - name: Set up Node
         uses: ./.github/workflows/setup-node
@@ -80,11 +70,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Checkout workflows repository
-        uses: actions/checkout@v4
-        with:
-          repository: game-ai-platform-team/workflows
 
       - name: Set up Node
         uses: ./.github/workflows/setup-node
