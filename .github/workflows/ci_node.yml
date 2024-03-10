@@ -3,15 +3,18 @@ on:
     secrets:
       CODECOV_TOKEN:
         required: true
-
-defaults:
-  run:
-    working-directory: .
+    inputs:
+      working-directory:
+        type: string
+        default: .
 
 jobs:
   Unit_test:
     name: Unit test
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
 
     steps:
       - uses: actions/checkout@v4
@@ -32,6 +35,9 @@ jobs:
 
   Format:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
 
     permissions:
       contents: write
@@ -59,6 +65,9 @@ jobs:
   Lint:
     runs-on: ubuntu-latest
     needs: Format
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
 
     steps:
       - uses: actions/checkout@v4
