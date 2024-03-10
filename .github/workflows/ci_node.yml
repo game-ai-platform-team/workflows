@@ -1,34 +1,28 @@
-name: CI (backend)
+name: CI (Node)
+
 on:
   workflow_call:
     secrets:
       CODECOV_TOKEN:
         required: true
-      OIDC_CLIENT_ID:
-        required: true
-      OIDC_CLIENT_SECRET:
-        required: true
+
 defaults:
   run:
-    working-directory: ./backend
+    working-directory: ./frontend
 
 jobs:
   Unit_test:
     name: Unit test
     runs-on: ubuntu-latest
-    environment: staging
-    env:
-      OIDC_CLIENT_ID: ${{ secrets.OIDC_CLIENT_ID }}
-      OIDC_CLIENT_SECRET: ${{ secrets.OIDC_CLIENT_SECRET }}
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Poetry
-        uses: ./.github/workflows/setup-poetry
+      - name: Set up Node
+        uses: ./.github/workflows/setup-node
 
       - name: Run unit tests
-        run: poetry run invoke coverage-xml
+        run: pnpm run coverage
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4
@@ -36,20 +30,7 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
           slug: game-ai-platform-team/tira-ai-platform
         with:
-          file: ./backend/coverage.xml
-
-  Lint:
-    runs-on: ubuntu-latest
-    needs: Format
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Poetry
-        uses: ./.github/workflows/setup-poetry
-
-      - name: Run pylint
-        run: poetry run invoke lint
+          files: ./frontend/coverage/coverage-final.json
 
   Format:
     runs-on: ubuntu-latest
@@ -60,11 +41,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Poetry
-        uses: ./.github/workflows/setup-poetry
+      - name: Set up Node
+        uses: ./.github/workflows/setup-node
 
       - name: Format code
-        run: poetry run invoke format
+        run: pnpm run format
+
+      - name: Fix lint issues
+        run: pnpm run lint:fix
 
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v9
@@ -73,3 +57,16 @@ jobs:
           author_email: github-actions[bot]@users.noreply.github.com
           message: "style: Format code"
           pull: "--rebase --autostash"
+
+  Lint:
+    runs-on: ubuntu-latest
+    needs: Format
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: ./.github/workflows/setup-node
+
+      - name: Run lint
+        run: pnpm run lint
