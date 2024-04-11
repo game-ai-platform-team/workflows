@@ -1,0 +1,24 @@
+name: Deploy
+on:
+  workflow_call:
+    secrets:
+      PYPI_TOKEN:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: game-ai-platform-team/setup-poetry@main
+    
+    - name: Configure PyPI Token
+      env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      run: poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
+
+    - name: Build and publish to pypi
+      run: poetry publish --build
