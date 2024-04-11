@@ -52,6 +52,29 @@ job_name:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 ```
 
+### pypi_deploy
+
+#### Parameters
+
+| name | default | required |
+|-|-|-|
+|`PYPI_TOKEN` (secret)||✅|
+
+#### Example
+
+```yml
+name: Deploy
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    uses: game-ai-platform-team/workflows/.github/workflows/pypi_deploy.yml@main
+
+    secrets:
+      PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+```
+
 ### e2e_test
 
 #### Parameters
