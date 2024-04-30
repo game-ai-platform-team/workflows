@@ -74,29 +74,3 @@ jobs:
     secrets:
       PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
 ```
-
-### e2e_test
-
-#### Parameters
-
-| name | default | required |
-|-|-|-|
-|`OIDC_CLIENT_ID` (secret)||✅|
-|`OIDC_CLIENT_SECRET` (secret)||✅|
-|`environment`||✅|
-|`working-directory`|`.`|❌|
-|`backend-directory`|`.`|❌|
-
-#### Example
-
-```yml
-job_name:
-    uses: game-ai-platform-team/workflows/.github/workflows/e2e_test.yml@main
-    with:
-        working-directory: ./frontend
-        environment: staging
-        backend-directory: ./backend
-    secrets:
-        OIDC_CLIENT_ID: ${{ secrets.OIDC_CLIENT_ID }}
-        OIDC_CLIENT_SECRET: ${{ secrets.OIDC_CLIENT_SECRET }}
-```
